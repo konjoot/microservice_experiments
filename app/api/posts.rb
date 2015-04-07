@@ -44,7 +44,7 @@ module Posts
         requires :id, type: Integer, desc: "Post's ID."
       end
       delete ':id' do
-        post = Post.find(params[:id]).destroy!
+        Post.find(params[:id]).destroy!
         body status: 'ok'
       end
     end
