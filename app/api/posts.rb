@@ -5,15 +5,15 @@ class Posts < Grape::API
   version 'v1', using: :header, vendor: 'maksimov'
 
   resources :posts do
+
     desc "index posts."
     get jbuilder: 'posts/index' do
       @posts = Post.all
     end
 
     desc "show post."
-    params do
-      requires :id, type: Integer, desc: "Post's ID."
-    end
+    params { requires :id, type: Integer, desc: "Post's ID." }
+
     get ':id', jbuilder: 'posts/show' do
       @post = Post.find(params[:id])
     end
@@ -23,6 +23,7 @@ class Posts < Grape::API
       requires :title, type: String, desc: "Post's title."
       requires :body, type: String, desc: "Post's body."
     end
+
     post jbuilder: 'posts/show' do
       @post = Post.create(declared(params))
     end
@@ -33,15 +34,15 @@ class Posts < Grape::API
       optional :title, type: String, desc: "Post's title."
       optional :body, type: String, desc: "Post's body."
     end
+
     put ':id', jbuilder: 'posts/show' do
       @post = Post.find(params[:id])
       @post.update_attributes(params)
     end
 
     desc "destroy post."
-    params do
-      requires :id, type: Integer, desc: "Post's ID."
-    end
+    params { requires :id, type: Integer, desc: "Post's ID." }
+
     delete ':id' do
       post = Post.find(params[:id]).destroy!
       body status: 'ok'
