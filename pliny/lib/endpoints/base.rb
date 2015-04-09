@@ -1,3 +1,6 @@
+require 'sinatra/param'
+require 'json'
+
 module Endpoints
   # The base class for all Sinatra-based endpoints. Use sparingly.
   class Base < Sinatra::Base
@@ -6,6 +9,7 @@ module Endpoints
 
     helpers Pliny::Helpers::Encode
     helpers Pliny::Helpers::Params
+    helpers Sinatra::Param
 
     set :dump_errors, false
     set :raise_errors, true

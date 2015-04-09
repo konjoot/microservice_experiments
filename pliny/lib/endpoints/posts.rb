@@ -10,8 +10,10 @@ module Endpoints
       end
 
       post do
-        # warning: not safe
-        post = Post.new(body_params)
+        param :title, String, required: true
+        param :body, String, required: true
+
+        post = Post.new(post_params)
         post.save
         status 201
         encode serialize(post)
@@ -23,9 +25,11 @@ module Endpoints
       end
 
       patch "/:id" do |id|
+        param :title, String, blank: false
+        param :body, String, blank: false
+
         post = Post.first(uuid: id) || halt(404)
-        # warning: not safe
-        #post.update(body_params)
+        post.update(post_params)
         encode serialize(post)
       end
 
@@ -39,6 +43,10 @@ module Endpoints
 
       def serialize(data, structure = :default)
         Serializers::Post.new(structure).serialize(data)
+      end
+
+      def post_params
+        # pending
       end
     end
   end
