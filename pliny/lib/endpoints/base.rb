@@ -1,5 +1,5 @@
 require 'sinatra/param'
-require 'json'
+require 'oj'
 
 module Endpoints
   # The base class for all Sinatra-based endpoints. Use sparingly.

@@ -3,6 +3,7 @@ ruby "2.2.1"
 
 gem "multi_json"
 gem "oj"
+gem "oj_mimic_json"
 gem "pg"
 gem "pliny", "~> 0.7"
 gem "pry"
