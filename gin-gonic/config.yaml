@@ -1,0 +1,8 @@
+db:
+  database: mydb
+  username: postgres
+  password: Xtern1448
+
+server:
+  host:
+  port: 8080
