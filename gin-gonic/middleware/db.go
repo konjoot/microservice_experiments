@@ -22,18 +22,18 @@ func init() {
   dbconn = dbr.NewConnection(db, nil)
 }
 
-func DbSession() gin.HandlerFunc {
-  return func(c *gin.Context) {
-    dbSession := dbconn.NewSession(nil)
-    c.Set("DB", dbSession)
-  }
-}
+// func DbSession() gin.HandlerFunc {
+//   return func(c *gin.Context) {
+//     dbSession := dbconn.NewSession(nil)
+//     c.Set("DB", dbSession)
+//   }
+// }
 
-func GetDb(c *gin.Context) *dbr.Session {
-  db, err := c.Get("DB")
-  if err != nil {
-    panic(err)
-  }
+// func GetDb(c *gin.Context) *dbr.Session {
+//   db, err := c.Get("DB")
+//   if err != nil {
+//     panic(err)
+//   }
 
-  return db.(*dbr.Session)
-}
+//   return db.(*dbr.Session)
+// }

@@ -1,7 +1,7 @@
 db:
-  database: mydb
-  username: postgres
-  password: Xtern1448
+  database: ror_grape
+  username: pg_test
+  password: pg_test
 
 server:
   host:
