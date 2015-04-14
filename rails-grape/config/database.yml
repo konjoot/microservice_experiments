@@ -9,6 +9,7 @@ default: &default
   encoding: unicode
   pool: 5
   username: pg_test
+  password: pg_test
 
 development:
   <<: *default
