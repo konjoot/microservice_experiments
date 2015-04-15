@@ -1,13 +1,13 @@
-package models
+package post
 
 import (
     "database/sql"
     "github.com/gocraft/dbr"
   _ "github.com/lib/pq"
-    "../../config"
+    "../../../config"
 )
 
-var dbconn *dbr.Connection
+var dbConn *dbr.Connection
 
 func init() {
   db, err := sql.Open("postgres", config.DbParams())
@@ -18,10 +18,12 @@ func init() {
   db.SetMaxIdleConns(7)
   db.SetMaxOpenConns(75)
 
-  dbconn = dbr.NewConnection(db, nil)
+  dbConn = dbr.NewConnection(db, nil)
 }
 
-type PostData struct {
+func dbSession() *dbr.Session { return dbConn.NewSession(nil) }
+
+type Post struct {
   Id           int64           `db:"id"          json:"id"`
   Title        dbr.NullString  `db:"title"       json:"title"`
   Body         dbr.NullString  `db:"body"        json:"body"`
@@ -29,20 +31,18 @@ type PostData struct {
   UpdatedAt    dbr.NullTime    `db:"updated_at"  json:"updated_at"`
 }
 
-type Post struct {}
+func (p Post) Find() (post *Post, err error) {
+  post = &p
 
-func (p Post) All() (posts []*PostData, err error) {
-  db := dbconn.NewSession(nil)
+  err = dbSession().Select("*").From("posts").Where("id = ?", p.Id).LoadStruct(&p)
 
-  _, err = db.Select("*").From("posts").LoadStructs(&posts)
-
-  return posts, err
+  return
 }
 
-func (p Post) Find(id string) (post PostData, err error) {
-  db := dbconn.NewSession(nil)
+type Posts struct {}
 
-  err = db.Select("*").From("posts").Where("id = ?", id).LoadStruct(&post)
+func (p Posts) Find() (posts []*Post, err error) {
+  _, err = dbSession().Select("*").From("posts").LoadStructs(&posts)
 
-  return post, err
+  return
 }

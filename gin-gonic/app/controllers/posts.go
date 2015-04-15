@@ -2,7 +2,8 @@ package controllers
 
 import (
     "github.com/gin-gonic/gin"
-  . "../models"
+  . "../models/post"
+  . "strconv"
 //     "github.com/gocraft/dbr"
 //     "time"
 )
@@ -10,7 +11,7 @@ import (
 type PostsController struct {}
 
 func (p PostsController) Index(c *gin.Context){
-  posts, err := Post{}.All()
+  posts, err := Posts{}.Find()
 
   if err != nil {
     c.JSON(404, gin.H{"message": "error"})
@@ -21,7 +22,14 @@ func (p PostsController) Index(c *gin.Context){
 }
 
 func (p PostsController) Show(c *gin.Context){
-  post, err := Post{}.Find(c.Params.ByName("id"))
+  id, err := ParseInt(c.Params.ByName("id"), 10, 64)
+
+  if err != nil {
+    c.JSON(404, gin.H{"message": "Id is not integer"})
+    return
+  }
+
+  post, err := Post{Id: id}.Find()
 
   if (err != nil) {
     c.JSON(404, gin.H{"message": "not found"})
