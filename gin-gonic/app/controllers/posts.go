@@ -4,6 +4,7 @@ import (
     "github.com/gin-gonic/gin"
     // "github.com/gin-gonic/gin/binding"
   . "../models/post"
+  "net/http"
   . "strconv"
   "fmt"
 //     "github.com/gocraft/dbr"
@@ -43,10 +44,20 @@ func (p PostsController) Show(c *gin.Context){
   c.JSON(200, post)
 }
 
+type PostFormBinding struct{}
+func (PostFormBinding) Name() string {
+  return "post_form"
+}
+
+func (PostFormBinding) Bind(req *http.Request, obj interface{}) error {
+  fmt.Printf("own form binding")
+  return nil
+}
+
 func (p PostsController) Create(c *gin.Context){
   post := &Post{}
 
-  c.Bind(post)
+  c.BindWith(post, PostFormBinding{})
 
   // post := postParams.MakePost()
 

@@ -27,8 +27,8 @@ func dbSession() *dbr.Session { return dbConn.NewSession(nil) }
 
 type Post struct {
   Id           int64           `db:"id"          json:"id"                      `
-  Title        dbr.NullString          `db:"title"       json:"title"       form:"title"`
-  Body         dbr.NullString          `db:"body"        json:"body"        form:"body" `
+  Title        dbr.NullString  `db:"title"       json:"title"       form:"title"`
+  Body         dbr.NullString  `db:"body"        json:"body"        form:"body" `
   CreatedAt    dbr.NullTime    `db:"created_at"  json:"created_at"              `
   UpdatedAt    dbr.NullTime    `db:"updated_at"  json:"updated_at"              `
 }
