@@ -5,7 +5,7 @@ import (
     "github.com/andevery/dbr"
   _ "github.com/lib/pq"
     "../../../config"
-    "fmt"
+    "time"
 )
 
 var dbConn *dbr.Connection
@@ -28,46 +28,51 @@ func dbSession() *dbr.Session { return dbConn.NewSession(nil) }
 type Post struct {
   Id           int64           `db:"id"          json:"id"                      `
   Title        dbr.NullString  `db:"title"       json:"title"       form:"title"`
-  Body         dbr.NullString  `db:"body"        json:"body"        form:"body" `
-  CreatedAt    dbr.NullTime    `db:"created_at"  json:"created_at"              `
-  UpdatedAt    dbr.NullTime    `db:"updated_at"  json:"updated_at"              `
+  Body         string          `db:"body"        json:"body"        form:"body" `
+  CreatedAt    time.Time       `db:"created_at"  json:"created_at"              `
+  UpdatedAt    time.Time       `db:"updated_at"  json:"updated_at"              `
 }
 
-type PostForm struct {
-  Title        string  `form:"title"`
-  Body         string  `form:"body"`
-}
+func (p *Post) Find() (post *Post, err error) {
+  post = p
 
-func (p Post) Find() (post *Post, err error) {
-  post = &p
-
-  err = dbSession().Select("*").From("posts").Where("id = ?", p.Id).LoadStruct(&p)
+  err = dbSession().Select("*").From("posts").Where("id = ?", p.Id).LoadStruct(p)
 
   return
 }
 
-func (p Post) Save() (status bool) {
-  status = true
-  fmt.Printf("%+v\n", p)
+func (p *Post) Create() (err error) {
+  p.CreatedAt = time.Now()
+  p.UpdatedAt = p.CreatedAt
 
-  k, _ := dbSession().InsertInto("posts").
-    Columns("title", "body").Record(p).ToSql()
-  fmt.Printf("%+v\n", k)
+  _, err = dbSession().InsertInto("posts").
+    Columns("title", "body", "created_at", "updated_at").Record(p).Exec()
 
-  _, err := dbSession().InsertInto("posts").
-    Columns("title", "body").Record(p).Exec()
+  return
+}
 
-  if err != nil {
-    status = false
-    fmt.Printf("%+v\n", err)
-  }
+func (p *Post) Update() (err error) {
+  p.UpdatedAt = time.Now()
+
+  _, err = dbSession().Update("posts").
+    Set("title", p.Title).
+    Set("body", p.Body).
+    Set("updated_at", p.UpdatedAt).
+    Where("id = ?", p.Id).Exec()
+
+  return
+}
+
+func (p *Post) Destroy() (err error) {
+  _, err = dbSession().DeleteFrom("posts").
+    Where("id = ?", p.Id).Exec()
 
   return
 }
 
 type Posts struct {}
 
-func (p Posts) Find() (posts []*Post, err error) {
+func (p *Posts) Find() (posts []*Post, err error) {
   _, err = dbSession().Select("*").From("posts").LoadStructs(&posts)
 
   return
