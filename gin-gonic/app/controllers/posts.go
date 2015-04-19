@@ -1,81 +1,142 @@
 package controllers
 
 import (
-    "github.com/gin-gonic/gin"
-    // "github.com/gin-gonic/gin/binding"
+  "github.com/gin-gonic/gin"
   . "../models/post"
-  "net/http"
   . "strconv"
+  "errors"
   "fmt"
-//     "github.com/gocraft/dbr"
-//     "time"
 )
 
 
-type PostsController struct {
-}
+type PostsController struct {}
 
 func (p PostsController) Index(c *gin.Context){
-  posts, err := Posts{}.Find()
+  posts, err := posts(c).Find()
 
-  if err != nil {
-    c.JSON(404, gin.H{"message": "error"})
-    return
-  }
+  if err != nil { render_400(c, err); return }
 
   c.JSON(200, posts)
 }
 
 func (p PostsController) Show(c *gin.Context){
-  id, err := ParseInt(c.Params.ByName("id"), 10, 64)
+  post, err := post(c).Find()
 
-  if err != nil {
-    c.JSON(404, gin.H{"message": "Id is not integer"})
-    return
-  }
+  if err != nil { post.Render_404(); return }
 
-  post, err := Post{Id: id}.Find()
-
-  if (err != nil) {
-    c.JSON(404, gin.H{"message": "not found"})
-    return
-  }
-
-  c.JSON(200, post)
-}
-
-type PostFormBinding struct{}
-func (PostFormBinding) Name() string {
-  return "post_form"
-}
-
-func (PostFormBinding) Bind(req *http.Request, obj interface{}) error {
-  fmt.Printf("own form binding")
-  return nil
+  post.Render()
 }
 
 func (p PostsController) Create(c *gin.Context){
-  post := &Post{}
+  post, err := post(c).Create()
 
-  c.BindWith(post, PostFormBinding{})
+  if err != nil { post.Render_422(err); return }
 
-  // post := postParams.MakePost()
-
-  fmt.Printf("%+v\n", post)
-
-  if post.Save() {
-    c.JSON(200, post)
-    return
-  }
-
-  // Post{Title: &p.form.Title, Body: &p.form.Body}.Create()
-  c.JSON(422, gin.H{"message": "post is not created"})
+  post.Render()
 }
 
 func (p PostsController) Update(c *gin.Context){
-  c.JSON(200, gin.H{"thisIs": "update"})
+  post, err := post(c).Find()
+
+  if err != nil { post.Render_404(); return }
+
+  post, err = post.Update()
+
+  if err != nil { post.Render_422(err); return }
+
+  post.Render()
 }
 
 func (p PostsController) Destroy(c *gin.Context){
-  c.JSON(200, gin.H{"thisIs": "destroy"})
+  post, err := post(c).Find();
+
+  if err != nil { post.Render_404(); return }
+
+  err = post.Destroy()
+
+  if err != nil { post.Render_400(err); return }
+
+  post.Destroyed()
+}
+
+type PostProc struct {
+  Post *Post
+  Context *gin.Context
+}
+
+func (self *PostProc) Find() (*PostProc, error) {
+  var err error
+
+  self.Post, err = self.Post.Find()
+
+  return self, err
+}
+
+func (self *PostProc) Create() (*PostProc, error) {
+  ok := self.Context.Bind(self.Post)
+
+  if ok { return self, self.Post.Create() }
+
+  return self, errors.New("can't parse Post data")
+}
+
+func (self *PostProc) Update() (*PostProc, error) {
+  ok := self.Context.Bind(self.Post)
+
+  if ok { return self, self.Post.Update() }
+
+  return self, errors.New("can't parse Post data")
+}
+
+func (self *PostProc) Destroy() (error) {
+  return self.Post.Destroy()
+}
+
+func (self *PostProc) Render() {
+  self.Context.JSON(200, self.Post)
+}
+
+func (self *PostProc) Destroyed() () {
+  msg := fmt.Sprintf("post with id:%d was successfully destroyed", self.Post.Id)
+  self.Context.JSON(200, gin.H{"message": msg})
+}
+
+func (self *PostProc) Render_400(err error) {
+  self.Context.JSON(400, gin.H{"error": err.Error()})
+}
+
+func (self *PostProc) Render_404() {
+  self.Context.JSON(404, gin.H{"error": notFound(self.Post.Id) })
+}
+
+func (self *PostProc) Render_422(err error) {
+  self.Context.JSON(422, gin.H{"error": err.Error()})
+}
+
+func posts(context *gin.Context) *Posts { return &Posts{} }
+
+func post(context *gin.Context) (p *PostProc) {
+  p = &PostProc{Post: &Post{}, Context: context}
+
+  if id, ok := getIdFrom(context); ok { p.Post.Id = id }
+
+  return
+}
+
+func getIdFrom(context *gin.Context) (id int64, status bool) {
+  status = true
+
+  id, err := ParseInt(context.Params.ByName("id"), 10, 64)
+
+  if err != nil { status = false }
+
+  return
+}
+
+func notFound(id int64) string {
+  return fmt.Sprintf("post with id:%d was not found", id)
+}
+
+func render_400(c *gin.Context, err error) {
+  c.JSON(400, gin.H{"error": err.Error()})
 }
