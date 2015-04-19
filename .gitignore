@@ -16,3 +16,5 @@
 !/log/.keep
 /tmp
 /gin-gonic/main
+/rails-grape/log/*.log
+
