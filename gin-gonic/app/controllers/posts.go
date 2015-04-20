@@ -14,9 +14,9 @@ type PostsController struct {}
 func (p PostsController) Index(c *gin.Context){
   posts, err := posts(c).Find()
 
-  if err != nil { render_400(c, err); return }
+  if err != nil { posts.Render_400(err); return }
 
-  c.JSON(200, posts)
+  posts.Render()
 }
 
 func (p PostsController) Show(c *gin.Context){
@@ -48,7 +48,7 @@ func (p PostsController) Update(c *gin.Context){
 }
 
 func (p PostsController) Destroy(c *gin.Context){
-  post, err := post(c).Find();
+  post, err := post(c).Find()
 
   if err != nil { post.Render_404(); return }
 
@@ -59,12 +59,12 @@ func (p PostsController) Destroy(c *gin.Context){
   post.Destroyed()
 }
 
-type PostProc struct {
+type PostMediator struct {
   Post *Post
   Context *gin.Context
 }
 
-func (self *PostProc) Find() (*PostProc, error) {
+func (self *PostMediator) Find() (*PostMediator, error) {
   var err error
 
   self.Post, err = self.Post.Find()
@@ -72,7 +72,7 @@ func (self *PostProc) Find() (*PostProc, error) {
   return self, err
 }
 
-func (self *PostProc) Create() (*PostProc, error) {
+func (self *PostMediator) Create() (*PostMediator, error) {
   ok := self.Context.Bind(self.Post)
 
   if ok { return self, self.Post.Create() }
@@ -80,7 +80,7 @@ func (self *PostProc) Create() (*PostProc, error) {
   return self, errors.New("can't parse Post data")
 }
 
-func (self *PostProc) Update() (*PostProc, error) {
+func (self *PostMediator) Update() (*PostMediator, error) {
   ok := self.Context.Bind(self.Post)
 
   if ok { return self, self.Post.Update() }
@@ -88,35 +88,59 @@ func (self *PostProc) Update() (*PostProc, error) {
   return self, errors.New("can't parse Post data")
 }
 
-func (self *PostProc) Destroy() (error) {
+func (self *PostMediator) Destroy() (error) {
   return self.Post.Destroy()
 }
 
-func (self *PostProc) Render() {
+func (self *PostMediator) Render() {
   self.Context.JSON(200, self.Post)
 }
 
-func (self *PostProc) Destroyed() () {
+func (self *PostMediator) Destroyed() () {
   msg := fmt.Sprintf("post with id:%d was successfully destroyed", self.Post.Id)
   self.Context.JSON(200, gin.H{"message": msg})
 }
 
-func (self *PostProc) Render_400(err error) {
+func (self *PostMediator) Render_400(err error) {
   self.Context.JSON(400, gin.H{"error": err.Error()})
 }
 
-func (self *PostProc) Render_404() {
+func (self *PostMediator) Render_404() {
   self.Context.JSON(404, gin.H{"error": notFound(self.Post.Id) })
 }
 
-func (self *PostProc) Render_422(err error) {
+func (self *PostMediator) Render_422(err error) {
   self.Context.JSON(422, gin.H{"error": err.Error()})
 }
 
-func posts(context *gin.Context) *Posts { return &Posts{} }
+type PostsMediator struct {
+  Posts *Posts
+  Context *gin.Context
+  Collection []*Post
+}
 
-func post(context *gin.Context) (p *PostProc) {
-  p = &PostProc{Post: &Post{}, Context: context}
+func (self *PostsMediator) Find() (*PostsMediator, error) {
+  var err error
+
+  self.Collection, err = self.Posts.Find()
+
+  return self, err
+}
+
+func (self *PostsMediator) Render() {
+  self.Context.JSON(200, self.Collection)
+}
+
+func (self *PostsMediator) Render_400(err error) {
+  self.Context.JSON(400, gin.H{"error": err.Error()})
+}
+
+func posts(context *gin.Context) *PostsMediator {
+  return &PostsMediator{Posts: &Posts{}, Context: context}
+}
+
+func post(context *gin.Context) (p *PostMediator) {
+  p = &PostMediator{Post: &Post{}, Context: context}
 
   if id, ok := getIdFrom(context); ok { p.Post.Id = id }
 
@@ -135,8 +159,4 @@ func getIdFrom(context *gin.Context) (id int64, status bool) {
 
 func notFound(id int64) string {
   return fmt.Sprintf("post with id:%d was not found", id)
-}
-
-func render_400(c *gin.Context, err error) {
-  c.JSON(400, gin.H{"error": err.Error()})
 }
