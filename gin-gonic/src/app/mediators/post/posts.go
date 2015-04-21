@@ -1,7 +1,7 @@
 package post
 
 import (
-  "../../models/post"
+  "app/models/post"
   "github.com/gin-gonic/gin"
 )
 
@@ -19,14 +19,16 @@ func (self *postsMediator) Find() (*postsMediator, error) {
   return self, err
 }
 
-func (self *postsMediator) Render() {
-  self.Context.JSON(200, self.Collection)
+// CollectionRenderer interface
+func (self *postsMediator) ToJSON( code int, obj interface{} ) {
+  self.Context.JSON( code, obj )
 }
 
-func (self *postsMediator) Render_400(err error) {
-  self.Context.JSON(400, gin.H{"error": err.Error()})
+func (self *postsMediator) GetCollection() []interface{} {
+  return self.Collection
 }
 
+// Constructor
 func Posts(context *gin.Context) *postsMediator {
   return &postsMediator{Posts: &post.Posts{}, Context: context}
 }

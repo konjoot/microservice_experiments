@@ -1,8 +1,8 @@
 package main
 
 import (
-    "./config"
-  . "./config/router"
+    "config"
+  . "config/router"
     "runtime"
 )
 

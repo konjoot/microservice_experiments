@@ -1,7 +1,7 @@
 package post
 
 import (
-    "../../models/post"
+    "app/models/post"
     "github.com/gin-gonic/gin"
     "errors"
   . "strconv"
@@ -41,27 +41,28 @@ func (self *postMediator) Destroy() (error) {
   return self.Post.Destroy()
 }
 
-func (self *postMediator) Render() {
-  self.Context.JSON(200, self.Post)
+/*
+// Renderer interface
+*/
+func (self *postMediator) Self() interface{} {
+  return self.Post
 }
 
-func (self *postMediator) Destroyed() () {
-  msg := fmt.Sprintf("post with id:%d was successfully destroyed", self.Post.Id)
-  self.Context.JSON(200, gin.H{"message": msg})
+func (self *postMediator) ToJSON( code int, obj interface{} ) {
+  self.Context.JSON( code, obj )
 }
 
-func (self *postMediator) Render_400(err error) {
-  self.Context.JSON(400, gin.H{"error": err.Error()})
+func (self *postMediator) NotFound() string {
+  return fmt.Sprintf("post with id:%d was not found", self.Post.Id)
 }
 
-func (self *postMediator) Render_404() {
-  self.Context.JSON(404, gin.H{"error": notFound(self.Post.Id) })
+func (self *postMediator) Destroyed() string {
+  return fmt.Sprintf("post with id:%d was successfully destroyed", self.Post.Id)
 }
 
-func (self *postMediator) Render_422(err error) {
-  self.Context.JSON(422, gin.H{"error": err.Error()})
-}
-
+/*
+// helper to get 'id' from context params
+*/
 func getIdFrom(context *gin.Context) (id int64, status bool) {
   status = true
 
@@ -72,10 +73,9 @@ func getIdFrom(context *gin.Context) (id int64, status bool) {
   return
 }
 
-func notFound(id int64) string {
-  return fmt.Sprintf("post with id:%d was not found", id)
-}
-
+/*
+// Constructor
+*/
 func Post(context *gin.Context) (p *postMediator) {
   p = &postMediator{Post: &post.Post{}, Context: context}
 

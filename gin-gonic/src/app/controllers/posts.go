@@ -2,7 +2,8 @@ package controllers
 
 import (
   "github.com/gin-gonic/gin"
-  . "../mediators/post"
+  . "app/mediators/post"
+  . "app/helpers/renderers"
 )
 
 
@@ -53,5 +54,5 @@ func (p PostsController) Destroy(c *gin.Context){
 
   if err != nil { post.Render_400(err); return }
 
-  post.Destroyed()
+  post.RenderDestroyed()
 }
