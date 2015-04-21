@@ -16,5 +16,6 @@
 !/log/.keep
 /tmp
 /gin-gonic/main
+/gin-gonic/.gvm_local/*
 /rails-grape/log/*.log
 
