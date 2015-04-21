@@ -18,13 +18,3 @@ func ( r *R ) Render() {
 func ( r *R ) Render_400( err error ) {
   r.ToJSON( 400, gin.H{ "error": err.Error() } )
 }
-
-
-// // Old
-// func (self *postsMediator) Render() {
-//   self.Context.JSON(200, self.Collection)
-// }
-
-// func (self *postsMediator) Render_400( err error ) {
-//   self.Context.JSON(400, gin.H{"error": err.Error()})
-// }
