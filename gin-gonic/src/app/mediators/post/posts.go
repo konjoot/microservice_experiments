@@ -1,8 +1,9 @@
 package post
 
 import (
-  "app/models/post"
-  "github.com/gin-gonic/gin"
+    "app/models/post"
+    "github.com/gin-gonic/gin"
+  . "app/helpers/renderer/collection"
 )
 
 type postsMediator struct {
@@ -11,20 +12,19 @@ type postsMediator struct {
   Collection []*post.Post
 }
 
-func (self *postsMediator) Find() (*postsMediator, error) {
+func (self *postsMediator) Find() (*R, error) {
   var err error
 
   self.Collection, err = self.Posts.Find()
 
-  return self, err
+  return &R{self}, err
 }
 
-// CollectionRenderer interface
 func (self *postsMediator) ToJSON( code int, obj interface{} ) {
   self.Context.JSON( code, obj )
 }
 
-func (self *postsMediator) GetCollection() []interface{} {
+func (self *postsMediator) GetCollection() interface{} {
   return self.Collection
 }
 

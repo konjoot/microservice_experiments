@@ -3,6 +3,7 @@ package post
 import (
     "app/models/post"
     "github.com/gin-gonic/gin"
+  . "app/helpers/renderer"
     "errors"
   . "strconv"
     "fmt"
@@ -13,37 +14,34 @@ type postMediator struct {
   Context *gin.Context
 }
 
-func (self *postMediator) Find() (*postMediator, error) {
+func (self *postMediator) Find() (*R, error) {
   var err error
 
   self.Post, err = self.Post.Find()
 
-  return self, err
+  return &R{self}, err
 }
 
-func (self *postMediator) Create() (*postMediator, error) {
+func (self *postMediator) Create() (*R, error) {
   ok := self.Context.Bind(self.Post)
 
-  if ok { return self, self.Post.Create() }
+  if ok { return &R{self}, self.Post.Create() }
 
-  return self, errors.New("can't parse Post data")
+  return &R{self}, errors.New("can't parse Post data")
 }
 
-func (self *postMediator) Update() (*postMediator, error) {
+func (self *postMediator) Update() (*R, error) {
   ok := self.Context.Bind(self.Post)
 
-  if ok { return self, self.Post.Update() }
+  if ok { return &R{self}, self.Post.Update() }
 
-  return self, errors.New("can't parse Post data")
+  return &R{self}, errors.New("can't parse Post data")
 }
 
 func (self *postMediator) Destroy() (error) {
   return self.Post.Destroy()
 }
 
-/*
-// Renderer interface
-*/
 func (self *postMediator) Self() interface{} {
   return self.Post
 }

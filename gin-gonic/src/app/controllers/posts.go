@@ -3,7 +3,6 @@ package controllers
 import (
   "github.com/gin-gonic/gin"
   . "app/mediators/post"
-  . "app/helpers/renderers"
 )
 
 

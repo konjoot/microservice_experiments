@@ -1,0 +1,8 @@
+db:
+  database: ror_grape
+  username: pg_test
+  password: pg_test
+
+server:
+  host:
+  port: 8080
