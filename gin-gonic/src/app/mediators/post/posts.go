@@ -1,15 +1,15 @@
 package post
 
 import (
-    "app/models/post"
+    "app/models"
     "github.com/gin-gonic/gin"
   . "app/helpers/renderer/collection"
 )
 
 type postsMediator struct {
-  Posts *post.Posts
+  Posts *models.Posts
   Context *gin.Context
-  Collection []*post.Post
+  Collection []*models.Post
 }
 
 func (self *postsMediator) Find() (*R, error) {
@@ -30,5 +30,5 @@ func (self *postsMediator) GetCollection() interface{} {
 
 // Constructor
 func Posts(context *gin.Context) *postsMediator {
-  return &postsMediator{Posts: &post.Posts{}, Context: context}
+  return &postsMediator{Posts: &models.Posts{}, Context: context}
 }

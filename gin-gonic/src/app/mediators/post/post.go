@@ -1,7 +1,7 @@
 package post
 
 import (
-    "app/models/post"
+    "app/models"
     "github.com/gin-gonic/gin"
   . "app/helpers/renderer"
     "errors"
@@ -10,7 +10,7 @@ import (
 )
 
 type postMediator struct {
-  Post *post.Post
+  Post *models.Post
   Context *gin.Context
 }
 
@@ -75,7 +75,7 @@ func getIdFrom(context *gin.Context) (id int64, status bool) {
 // Constructor
 */
 func Post(context *gin.Context) (p *postMediator) {
-  p = &postMediator{Post: &post.Post{}, Context: context}
+  p = &postMediator{Post: &models.Post{}, Context: context}
 
   if id, ok := getIdFrom(context); ok { p.Post.Id = id }
 
