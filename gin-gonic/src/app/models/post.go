@@ -28,6 +28,13 @@ func (p *Post) Create() (err error) {
   _, err = dbSession().InsertInto("posts").
     Columns("title", "body", "created_at", "updated_at").Record(p).Exec()
 
+  // load Id of newely created post
+  if err == nil {
+    dbSession().Select("id").From("posts").
+      Where("title = ? AND body = ? AND created_at = ? AND updated_at = ?", p.Title, p.Body, p.CreatedAt, p.UpdatedAt).
+        LoadStruct(p)
+  }
+
   return
 }
 
