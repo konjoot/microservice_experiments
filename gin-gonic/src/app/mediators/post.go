@@ -3,7 +3,7 @@ package mediators
 import (
     "app/models"
     "github.com/gin-gonic/gin"
-  . "app/helpers/renderer"
+  . "app/helpers"
     "errors"
   . "strconv"
     "fmt"

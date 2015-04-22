@@ -1,20 +1,20 @@
-package collection
+package helpers
 
 import "github.com/gin-gonic/gin"
 
 
 type CollectionRenderer interface {
-  Find() (*R, error)
+  Find() (*CR, error)
   ToJSON( code int, obj interface{} )
   GetCollection() interface{}
 }
 
-type R struct { CollectionRenderer }
+type CR struct { CollectionRenderer }
 
-func ( r *R ) Render() {
+func ( r *CR ) Render() {
   r.ToJSON( 200, r.GetCollection() )
 }
 
-func ( r *R ) Render_400( err error ) {
+func ( r *CR ) Render_400( err error ) {
   r.ToJSON( 400, gin.H{ "error": err.Error() } )
 }

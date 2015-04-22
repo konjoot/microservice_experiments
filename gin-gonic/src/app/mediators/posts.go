@@ -3,7 +3,7 @@ package mediators
 import (
     "app/models"
     "github.com/gin-gonic/gin"
-  . "app/helpers/renderer/collection"
+  . "app/helpers"
 )
 
 type postsMediator struct {
@@ -12,12 +12,12 @@ type postsMediator struct {
   Collection []*models.Post
 }
 
-func (self *postsMediator) Find() (*R, error) {
+func (self *postsMediator) Find() (*CR, error) {
   var err error
 
   self.Collection, err = self.Posts.Find()
 
-  return &R{self}, err
+  return &CR{self}, err
 }
 
 func (self *postsMediator) ToJSON( code int, obj interface{} ) {
