@@ -31,8 +31,12 @@ func (p *Post) Create() (err error) {
   // load Id of newely created post
   if err == nil {
     dbSession().Select("id").From("posts").
-      Where("title = ? AND body = ? AND created_at = ? AND updated_at = ?", p.Title, p.Body, p.CreatedAt, p.UpdatedAt).
-        LoadStruct(p)
+      Where( "title = ?",      p.Title     ).
+      Where( "body = ?",       p.Body      ).
+      Where( "created_at = ?", p.CreatedAt ).
+      Where( "updated_at = ?", p.UpdatedAt ).
+      OrderBy( "id DESC" ).
+      LoadStruct(p)
   }
 
   return
