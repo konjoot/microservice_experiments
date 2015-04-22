@@ -1,4 +1,4 @@
-package post
+package mediators
 
 import (
     "app/models"
