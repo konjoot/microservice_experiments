@@ -2,7 +2,7 @@ package main
 
 import (
     "config"
-  . "config/router"
+  . "router"
     "runtime"
 )
 
