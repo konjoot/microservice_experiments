@@ -46,7 +46,7 @@ module Endpoints
       end
 
       def post_params
-        # pending
+        {title: params[:title], body: params[:body]}
       end
     end
   end
