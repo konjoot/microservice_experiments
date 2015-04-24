@@ -20,7 +20,7 @@ module Endpoints
       end
 
       get "/:id" do |id|
-        post = Post.first(uuid: id) || halt(404)
+        post = Post.first(id: id) || halt(404)
         encode serialize(post)
       end
 
@@ -28,13 +28,13 @@ module Endpoints
         param :title, String, blank: false
         param :body, String, blank: false
 
-        post = Post.first(uuid: id) || halt(404)
+        post = Post.first(id: id) || halt(404)
         post.update(post_params)
         encode serialize(post)
       end
 
       delete "/:id" do |id|
-        post = Post.first(uuid: id) || halt(404)
+        post = Post.first(id: id) || halt(404)
         post.destroy
         encode serialize(post)
       end
