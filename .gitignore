@@ -19,4 +19,9 @@
 /gin-gonic/gin-gonic
 /gin-gonic/.gvm_local/*
 /rails-grape/log/*.log
+/rails-grape/tmp/*
+/rails-grape/public/assets/*
+/rails-grape/*.log
+/pliny/*.log
+/gin-gonic/*.log
 
