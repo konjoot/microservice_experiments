@@ -1,0 +1,31 @@
+banchmarks
+
+pliny:
+wrk -c50    -d10s -t4 "http://localhost:5000/posts"
+wrk -c100   -d10s -t4 "http://localhost:5000/posts"
+wrk -c150   -d10s -t4 "http://localhost:5000/posts"
+wrk -c200   -d10s -t4 "http://localhost:5000/posts"
+wrk -c250   -d10s -t4 "http://localhost:5000/posts"
+wrk -c500   -d10s -t4 "http://localhost:5000/posts"
+wrk -c1000  -d10s -t4 "http://localhost:5000/posts"
+wrk -c1500  -d10s -t4 "http://localhost:5000/posts"
+wrk -c3000  -d10s -t4 "http://localhost:5000/posts"
+wrk -c5000  -d10s -t4 "http://localhost:5000/posts"
+wrk -c10000 -d10s -t4 "http://localhost:5000/posts"
+
+pliny + boom:
+
+boom -n 5000 -c 50 "http://localhost:5000/posts"
+boom -n 5000 -c 100 "http://localhost:5000/posts"
+boom -n 5000 -c 150 "http://localhost:5000/posts"
+boom -n 5000 -c 200 "http://localhost:5000/posts"
+boom -n 5000 -c 250 "http://localhost:5000/posts"
+boom -n 5000 -c 500 "http://localhost:5000/posts"
+boom -n 5000 -c 1000 "http://localhost:5000/posts"
+boom -n 5000 -c 1500 "http://localhost:5000/posts"
+boom -n 5000 -c 3000 "http://localhost:5000/posts"
+boom -n 5000 -c 5000 "http://localhost:5000/posts"
+boom -n 10000 -c 10000 "http://localhost:5000/posts"
+boom -n 100000 -c 50000 "http://localhost:5000/posts"
+boom -n 500000 -c 100000 "http://localhost:5000/posts"
+boom -n 1000000 -c 500000 "http://localhost:5000/posts"

@@ -1,0 +1,207 @@
+banchmarks
+
+pliny:
+wrk -c50    -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c100   -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c150   -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c200   -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c250   -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c500   -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c1500  -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c3000  -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c5000  -d10s -t4 "http://localhost:8080/api/posts"
+wrk -c10000 -d10s -t4 "http://localhost:8080/api/posts"
+
+pliny + boom:
+
+zsh -c 'boom -n 5000 -c 50 "http://localhost:8080/api/posts"'
+  Summary:
+    Total:  41.3841 secs.
+    Slowest:  0.5403 secs.
+    Fastest:  0.0413 secs.
+    Average:  0.4117 secs.
+    Requests/sec: 120.8192
+    Total Data Received:  149385000 bytes.
+    Response Size per Request:  29877 bytes.
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.041 [1] |
+    0.091 [7] |
+    0.141 [7] |
+    0.191 [7] |
+    0.241 [6] |
+    0.291 [5] |
+    0.341 [6] |
+    0.391 [605] |∎∎∎∎∎∎
+    0.440 [3793]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.490 [542] |∎∎∎∎∎
+    0.540 [21]  |
+
+  Latency distribution:
+    10% in 0.3884 secs.
+    25% in 0.3974 secs.
+    50% in 0.4095 secs.
+    75% in 0.4261 secs.
+    90% in 0.4423 secs.
+    95% in 0.4536 secs.
+    99% in 0.4801 secs.
+zsh -c 'boom -n 5000 -c 100 "http://localhost:8080/api/posts"'
+  Summary:
+    Total:  44.7047 secs.
+    Slowest:  1.2510 secs.
+    Fastest:  0.0364 secs.
+    Average:  0.8848 secs.
+    Requests/sec: 111.8449
+    Total Data Received:  149385000 bytes.
+    Response Size per Request:  29877 bytes.
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.036 [1] |
+    0.158 [14]  |
+    0.279 [14]  |
+    0.401 [15]  |
+    0.522 [13]  |
+    0.644 [15]  |
+    0.765 [15]  |
+    0.887 [2893]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.008 [1467]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.130 [414] |∎∎∎∎∎
+    1.251 [139] |∎
+
+  Latency distribution:
+    10% in 0.8073 secs.
+    25% in 0.8255 secs.
+    50% in 0.8622 secs.
+    75% in 0.9337 secs.
+    90% in 1.0170 secs.
+    95% in 1.0927 secs.
+    99% in 1.1561 secs.
+
+zsh -c 'boom -n 5000 -c 150 "http://localhost:8080/api/posts"'
+  Summary:
+    Total:  43.5326 secs.
+    Slowest:  8.3594 secs.
+    Fastest:  0.0351 secs.
+    Average:  1.2664 secs.
+    Requests/sec: 114.8564
+    Total Data Received:  149385000 bytes.
+    Response Size per Request:  29877 bytes.
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.035 [1] |
+    0.867 [96]  |
+    1.700 [4355]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.532 [484] |∎∎∎∎
+    3.365 [16]  |
+    4.197 [21]  |
+    5.030 [22]  |
+    5.862 [0] |
+    6.695 [0] |
+    7.527 [1] |
+    8.359 [4] |
+
+  Latency distribution:
+    10% in 1.0730 secs.
+    25% in 1.0942 secs.
+    50% in 1.1260 secs.
+    75% in 1.2194 secs.
+    90% in 2.0644 secs.
+    95% in 2.1387 secs.
+    99% in 2.8903 secs.
+
+zsh -c 'boom -n 5000 -c 200 "http://localhost:8080/api/posts"'
+  Summary:
+    Total:  110.5760 secs.
+    Slowest:  56.2999 secs.
+    Fastest:  0.1424 secs.
+    Average:  1.8883 secs.
+    Requests/sec: 44.8018
+    Total Data Received:  148010658 bytes.
+    Response Size per Request:  29877 bytes.
+
+  Status code distribution:
+    [200] 4954 responses
+
+  Response time histogram:
+    0.142 [1] |
+    5.758 [4775]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    11.374 [165]  |∎
+    16.990 [7]  |
+    22.605 [1]  |
+    28.221 [2]  |
+    33.837 [2]  |
+    39.453 [0]  |
+    45.068 [0]  |
+    50.684 [0]  |
+    56.300 [1]  |
+
+  Latency distribution:
+    10% in 1.0641 secs.
+    25% in 1.0890 secs.
+    50% in 1.2213 secs.
+    75% in 2.0687 secs.
+    90% in 3.6645 secs.
+    95% in 4.6965 secs.
+    99% in 6.9964 secs.
+
+  Error distribution:
+    [4] Get http://127.0.0.1:8080/api/posts: EOF
+    [42]  Get http://127.0.0.1:8080/api/posts: read tcp 127.0.0.1:8080: connection reset by peer
+
+zsh -c 'boom -n 5000 -c 250 "http://localhost:8080/api/posts"'
+  Summary:
+    Total:  110.7638 secs.
+    Slowest:  65.2939 secs.
+    Fastest:  0.0485 secs.
+    Average:  2.9424 secs.
+    Requests/sec: 44.3286
+    Total Data Received:  146696070 bytes.
+    Response Size per Request:  29877 bytes.
+
+  Status code distribution:
+    [200] 4910 responses
+
+  Response time histogram:
+    0.048 [1] |
+    6.573 [4523]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    13.098 [213]  |∎
+    19.622 [121]  |∎
+    26.147 [10] |
+    32.671 [29] |
+    39.196 [7]  |
+    45.720 [0]  |
+    52.245 [0]  |
+    58.769 [3]  |
+    65.294 [3]  |
+
+  Latency distribution:
+    10% in 1.0733 secs.
+    25% in 1.1342 secs.
+    50% in 1.4170 secs.
+    75% in 2.3351 secs.
+    90% in 6.3325 secs.
+    95% in 12.0284 secs.
+    99% in 20.6724 secs.
+
+  Error distribution:
+    [8] Get http://127.0.0.1:8080/api/posts: EOF
+    [82]  Get http://127.0.0.1:8080/api/posts: read tcp 127.0.0.1:8080: connection reset by peer
+
+zsh -c 'boom -n 5000 -c 500 "http://localhost:8080/api/posts"'
+zsh -c 'boom -n 5000 -c 1000 "http://localhost:8080/api/posts"'
+zsh -c 'boom -n 5000 -c 1500 "http://localhost:8080/api/posts"'
+zsh -c 'boom -n 5000 -c 3000 "http://localhost:8080/api/posts"'
+zsh -c 'boom -n 5000 -c 5000 "http://localhost:8080/api/posts"'
+zsh -c 'boom -n 10000 -c 10000 "http://localhost:8080/api/posts"'
+zsh -c 'boom -n 100000 -c 50000 "http://localhost:8080/api/posts"'
+zsh -c 'boom -n 500000 -c 100000 "http://localhost:8080/api/posts"'
+zsh -c 'boom -n 1000000 -c 500000 "http://localhost:8080/api/posts"'

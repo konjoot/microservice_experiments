@@ -1,0 +1,605 @@
+banchmarks
+
+go + wrk:
+wrk -c50    -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 50 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    49.84ms   35.14ms 324.41ms   70.00%
+      Req/Sec   254.28     48.50   396.00     71.00%
+    10144 requests in 10.02s, 271.79MB read
+  Requests/sec:   1012.54
+  Transfer/sec:     27.13MB
+
+wrk -c100   -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 100 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   107.66ms   87.14ms 774.35ms   69.02%
+      Req/Sec   254.99     76.22   500.00     71.75%
+    10166 requests in 10.02s, 272.70MB read
+  Requests/sec:   1014.18
+  Transfer/sec:     27.20MB
+
+wrk -c150   -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 150 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   155.13ms  128.37ms   1.24s    67.82%
+      Req/Sec   260.49    102.05   564.00     70.18%
+    10374 requests in 10.02s, 280.95MB read
+  Requests/sec:   1035.62
+  Transfer/sec:     28.05MB
+
+wrk -c200   -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 200 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   191.41ms  156.69ms   1.45s    69.16%
+      Req/Sec   280.57    120.77   740.00     73.50%
+    11191 requests in 10.02s, 304.32MB read
+  Requests/sec:   1116.81
+  Transfer/sec:     30.37MB
+
+wrk -c250   -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 250 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   218.43ms  161.91ms   1.32s    70.29%
+      Req/Sec   297.05    147.30   780.00     76.00%
+    11842 requests in 10.03s, 318.33MB read
+  Requests/sec:   1180.52
+  Transfer/sec:     31.73MB
+
+wrk -c500   -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 500 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   387.68ms  290.64ms   1.99s    76.10%
+      Req/Sec   340.63    218.77     1.19k    80.62%
+    13212 requests in 10.02s, 355.91MB read
+    Socket errors: connect 0, read 0, write 0, timeout 10
+  Requests/sec:   1318.96
+  Transfer/sec:     35.53MB
+
+wrk -c1000  -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 1000 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   584.28ms  245.11ms   1.84s    74.53%
+      Req/Sec   342.70    242.31     1.83k    75.25%
+    13572 requests in 10.03s, 364.36MB read
+    Socket errors: connect 0, read 0, write 0, timeout 25
+  Requests/sec:   1353.02
+  Transfer/sec:     36.32MB
+
+wrk -c1500  -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 1500 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   628.68ms  211.32ms   1.55s    69.65%
+      Req/Sec   343.47    282.84     1.75k    64.05%
+    13531 requests in 10.02s, 369.26MB read
+    Socket errors: connect 483, read 0, write 0, timeout 0
+  Requests/sec:   1350.06
+  Transfer/sec:     36.84MB
+
+wrk -c3000  -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 3000 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   636.97ms  187.80ms   1.34s    73.46%
+      Req/Sec   350.89    298.62     2.18k    82.41%
+    13923 requests in 10.03s, 373.41MB read
+    Socket errors: connect 1983, read 0, write 0, timeout 113
+  Requests/sec:   1387.79
+  Transfer/sec:     37.22MB
+
+wrk -c5000  -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 5000 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   565.46ms  277.03ms   1.96s    68.01%
+      Req/Sec   495.96    358.32     3.22k    82.22%
+    13345 requests in 10.02s, 359.45MB read
+    Socket errors: connect 3983, read 52, write 0, timeout 131
+  Requests/sec:   1331.30
+  Transfer/sec:     35.86MB
+
+wrk -c10000 -d10s -t4 "http://localhost:8080/api/posts"
+  Running 10s test @ http://localhost:8080/api/posts
+    4 threads and 10000 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency   698.99ms  146.81ms   1.61s    80.76%
+      Req/Sec   589.69    432.19     2.16k    68.09%
+    13866 requests in 10.05s, 372.28MB read
+    Socket errors: connect 8983, read 0, write 0, timeout 0
+  Requests/sec:   1379.18
+  Transfer/sec:     37.03MB
+
+
+go + boom:
+
+boom -n 5000 -c 50 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  5.4799 secs.
+    Slowest:  0.2026 secs.
+    Fastest:  0.0025 secs.
+    Average:  0.0545 secs.
+    Requests/sec: 912.4320
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.003 [1] |
+    0.023 [425] |∎∎∎∎∎∎∎∎∎∎∎
+    0.043 [1462]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.063 [1480]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.083 [899] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.103 [446] |∎∎∎∎∎∎∎∎∎∎∎∎
+    0.123 [172] |∎∎∎∎
+    0.143 [77]  |∎∎
+    0.163 [25]  |
+    0.183 [8] |
+    0.203 [5] |
+
+  Latency distribution:
+    10% in 0.0242 secs.
+    25% in 0.0346 secs.
+    50% in 0.0497 secs.
+    75% in 0.0696 secs.
+    90% in 0.0902 secs.
+    95% in 0.1059 secs.
+    99% in 0.1371 secs.
+
+boom -n 5000 -c 100 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  5.3686 secs.
+    Slowest:  0.5937 secs.
+    Fastest:  0.0026 secs.
+    Average:  0.1064 secs.
+    Requests/sec: 931.3336
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.003 [1] |
+    0.062 [1240]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.121 [2137]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.180 [1094]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.239 [349] |∎∎∎∎∎∎
+    0.298 [89]  |∎
+    0.357 [37]  |
+    0.416 [16]  |
+    0.475 [18]  |
+    0.535 [10]  |
+    0.594 [9] |
+
+  Latency distribution:
+    10% in 0.0399 secs.
+    25% in 0.0620 secs.
+    50% in 0.0927 secs.
+    75% in 0.1356 secs.
+    90% in 0.1826 secs.
+    95% in 0.2178 secs.
+    99% in 0.3753 secs.
+
+boom -n 5000 -c 150 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  4.0938 secs.
+    Slowest:  0.3729 secs.
+    Fastest:  0.0211 secs.
+    Average:  0.1208 secs.
+    Requests/sec: 1221.3709
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.021 [1] |
+    0.056 [113] |∎∎
+    0.091 [1108]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.127 [1877]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.162 [1169]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.197 [471] |∎∎∎∎∎∎∎∎∎∎
+    0.232 [173] |∎∎∎
+    0.267 [56]  |∎
+    0.303 [26]  |
+    0.338 [4] |
+    0.373 [2] |
+
+  Latency distribution:
+    10% in 0.0731 secs.
+    25% in 0.0921 secs.
+    50% in 0.1152 secs.
+    75% in 0.1433 secs.
+    90% in 0.1734 secs.
+    95% in 0.1981 secs.
+    99% in 0.2503 secs.
+
+boom -n 5000 -c 200 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  4.0778 secs.
+    Slowest:  0.5650 secs.
+    Fastest:  0.0127 secs.
+    Average:  0.1592 secs.
+    Requests/sec: 1226.1623
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.013 [1] |
+    0.068 [77]  |∎
+    0.123 [940] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.178 [2637]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.234 [996] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.289 [245] |∎∎∎
+    0.344 [78]  |∎
+    0.399 [22]  |
+    0.455 [1] |
+    0.510 [2] |
+    0.565 [1] |
+
+  Latency distribution:
+    10% in 0.1102 secs.
+    25% in 0.1282 secs.
+    50% in 0.1522 secs.
+    75% in 0.1808 secs.
+    90% in 0.2181 secs.
+    95% in 0.2528 secs.
+    99% in 0.3168 secs.
+
+boom -n 5000 -c 250 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  4.0788 secs.
+    Slowest:  0.4442 secs.
+    Fastest:  0.0185 secs.
+    Average:  0.1987 secs.
+    Requests/sec: 1225.8622
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.018 [1] |
+    0.061 [34]  |
+    0.104 [27]  |
+    0.146 [240] |∎∎∎∎∎
+    0.189 [1902]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.231 [1849]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.274 [697] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.316 [187] |∎∎∎
+    0.359 [50]  |∎
+    0.402 [10]  |
+    0.444 [3] |
+
+  Latency distribution:
+    10% in 0.1532 secs.
+    25% in 0.1711 secs.
+    50% in 0.1939 secs.
+    75% in 0.2215 secs.
+    90% in 0.2532 secs.
+    95% in 0.2740 secs.
+    99% in 0.3195 secs.
+
+boom -n 5000 -c 500 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  4.0436 secs.
+    Slowest:  0.6064 secs.
+    Fastest:  0.0486 secs.
+    Average:  0.3836 secs.
+    Requests/sec: 1236.5151
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.049 [1] |
+    0.104 [37]  |
+    0.160 [60]  |∎
+    0.216 [74]  |∎
+    0.272 [84]  |∎
+    0.328 [191] |∎∎∎
+    0.383 [2010]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.439 [1730]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.495 [622] |∎∎∎∎∎∎∎∎∎∎∎∎
+    0.551 [171] |∎∎∎
+    0.606 [20]  |
+
+  Latency distribution:
+    10% in 0.3320 secs.
+    25% in 0.3559 secs.
+    50% in 0.3842 secs.
+    75% in 0.4183 secs.
+    90% in 0.4586 secs.
+    95% in 0.4857 secs.
+    99% in 0.5269 secs.
+
+boom -n 5000 -c 1000 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  4.0726 secs.
+    Slowest:  1.0453 secs.
+    Fastest:  0.1055 secs.
+    Average:  0.7311 secs.
+    Requests/sec: 1227.7121
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.106 [1] |
+    0.199 [102] |∎∎
+    0.293 [141] |∎∎
+    0.387 [119] |∎∎
+    0.481 [125] |∎∎
+    0.575 [121] |∎∎
+    0.669 [137] |∎∎
+    0.763 [1617]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.857 [2000]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.951 [612] |∎∎∎∎∎∎∎∎∎∎∎∎
+    1.045 [25]  |
+
+  Latency distribution:
+    10% in 0.4907 secs.
+    25% in 0.7257 secs.
+    50% in 0.7683 secs.
+    75% in 0.8202 secs.
+    90% in 0.8673 secs.
+    95% in 0.8912 secs.
+    99% in 0.9321 secs.
+
+boom -n 5000 -c 1500 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  1.0359 secs.
+    Slowest:  1.0046 secs.
+    Fastest:  0.1381 secs.
+    Average:  0.5418 secs.
+    Requests/sec: 984.6847
+
+  Status code distribution:
+    [200] 1020 responses
+
+  Response time histogram:
+    0.138 [1] |
+    0.225 [82]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.311 [90]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.398 [122] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.485 [127] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.571 [112] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.658 [130] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.745 [145] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.831 [115] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.918 [86]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.005 [10]  |∎∎
+
+  Latency distribution:
+    10% in 0.2501 secs.
+    25% in 0.3670 secs.
+    50% in 0.5479 secs.
+    75% in 0.7202 secs.
+    90% in 0.8294 secs.
+    95% in 0.8749 secs.
+    99% in 0.9205 secs.
+
+  Error distribution:
+    [3980]  Get http://127.0.0.1:8080/api/posts: dial tcp 127.0.0.1:8080: too many open files
+
+boom -n 5000 -c 3000 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  1.0221 secs.
+    Slowest:  0.9943 secs.
+    Fastest:  0.1571 secs.
+    Average:  0.5721 secs.
+    Requests/sec: 997.9469
+
+  Status code distribution:
+    [200] 1020 responses
+
+  Response time histogram:
+    0.157 [1] |
+    0.241 [103] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.325 [82]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.408 [127] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.492 [105] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.576 [98]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.659 [71]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.743 [131] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.827 [117] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.911 [112] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.994 [73]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 0.2391 secs.
+    25% in 0.3588 secs.
+    50% in 0.5704 secs.
+    75% in 0.7675 secs.
+    90% in 0.8854 secs.
+    95% in 0.9336 secs.
+    99% in 0.9745 secs.
+
+  Error distribution:
+    [3980]  Get http://127.0.0.1:8080/api/posts: dial tcp 127.0.0.1:8080: too many open files
+
+boom -n 5000 -c 5000 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  0.9643 secs.
+    Slowest:  0.9265 secs.
+    Fastest:  0.1673 secs.
+    Average:  0.5344 secs.
+    Requests/sec: 1057.7414
+
+  Status code distribution:
+    [200] 1020 responses
+
+  Response time histogram:
+    0.167 [1] |
+    0.243 [133] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.319 [82]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.395 [102] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.471 [94]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.547 [104] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.623 [99]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.699 [124] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.775 [114] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.851 [98]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.927 [69]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 0.2135 secs.
+    25% in 0.3565 secs.
+    50% in 0.5445 secs.
+    75% in 0.7177 secs.
+    90% in 0.8248 secs.
+    95% in 0.8646 secs.
+    99% in 0.8961 secs.
+
+  Error distribution:
+    [3980]  Get http://127.0.0.1:8080/api/posts: dial tcp 127.0.0.1:8080: too many open files
+
+boom -n 10000 -c 10000 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  1.1243 secs.
+    Slowest:  1.0165 secs.
+    Fastest:  0.2504 secs.
+    Average:  0.5955 secs.
+    Requests/sec: 907.2645
+
+  Status code distribution:
+    [200] 1020 responses
+
+  Response time histogram:
+    0.250 [1] |
+    0.327 [135] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.404 [110] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.480 [115] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.557 [105] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.633 [84]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.710 [119] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.787 [98]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.863 [119] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.940 [96]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.016 [38]  |∎∎∎∎∎∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 0.2960 secs.
+    25% in 0.4123 secs.
+    50% in 0.6010 secs.
+    75% in 0.7858 secs.
+    90% in 0.8853 secs.
+    95% in 0.9266 secs.
+    99% in 1.0087 secs.
+
+  Error distribution:
+    [8980]  Get http://127.0.0.1:8080/api/posts: dial tcp 127.0.0.1:8080: too many open files
+
+boom -n 100000 -c 50000 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  2.9540 secs.
+    Slowest:  2.0203 secs.
+    Fastest:  0.1625 secs.
+    Average:  1.0116 secs.
+    Requests/sec: 704.4741
+
+  Status code distribution:
+    [200] 2081 responses
+
+  Response time histogram:
+    0.163 [1] |
+    0.348 [71]  |∎∎∎∎∎∎
+    0.534 [118] |∎∎∎∎∎∎∎∎∎∎
+    0.720 [437] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.906 [456] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.091 [108] |∎∎∎∎∎∎∎∎∎
+    1.277 [249] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.463 [337] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.649 [179] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.834 [39]  |∎∎∎
+    2.020 [86]  |∎∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 0.5433 secs.
+    25% in 0.6682 secs.
+    50% in 0.9025 secs.
+    75% in 1.3737 secs.
+    90% in 1.5368 secs.
+    95% in 1.8199 secs.
+    99% in 1.9520 secs.
+
+  Error distribution:
+    [97919] Get http://127.0.0.1:8080/api/posts: dial tcp 127.0.0.1:8080: too many open files
+
+boom -n 500000 -c 100000 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  11.5534 secs.
+    Slowest:  4.2465 secs.
+    Fastest:  0.2425 secs.
+    Average:  1.1530 secs.
+    Requests/sec: 804.4366
+
+  Status code distribution:
+    [200] 9294 responses
+
+  Response time histogram:
+    0.242 [1] |
+    0.643 [1520]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.043 [2466]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.444 [3347]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.844 [1243]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.245 [443] |∎∎∎∎∎
+    2.645 [133] |∎
+    3.045 [13]  |
+    3.446 [4] |
+    3.846 [32]  |
+    4.247 [92]  |∎
+
+  Latency distribution:
+    10% in 0.5503 secs.
+    25% in 0.7338 secs.
+    50% in 1.0972 secs.
+    75% in 1.3661 secs.
+    90% in 1.7707 secs.
+    95% in 2.0634 secs.
+    99% in 3.8503 secs.
+
+  Error distribution:
+    [490706]  Get http://127.0.0.1:8080/api/posts: dial tcp 127.0.0.1:8080: too many open files
+
+boom -n 1000000 -c 500000 "http://localhost:8080/api/posts"
+  Summary:
+    Total:  23.6914 secs.
+    Slowest:  4.1221 secs.
+    Fastest:  0.3465 secs.
+    Average:  1.2432 secs.
+    Requests/sec: 679.5291
+
+  Status code distribution:
+    [200] 16099 responses
+
+  Response time histogram:
+    0.346 [1] |
+    0.724 [2076]  |∎∎∎∎∎∎∎∎
+    1.102 [9242]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.479 [1357]  |∎∎∎∎∎
+    1.857 [201] |
+    2.234 [217] |
+    2.612 [1598]  |∎∎∎∎∎∎
+    2.989 [1078]  |∎∎∎∎
+    3.367 [152] |
+    3.745 [139] |
+    4.122 [38]  |
+
+  Latency distribution:
+    10% in 0.6957 secs.
+    25% in 0.8049 secs.
+    50% in 0.9264 secs.
+    75% in 1.2062 secs.
+    90% in 2.5777 secs.
+    95% in 2.7355 secs.
+    99% in 3.4578 secs.
+
+  Error distribution:
+    [983901]  Get http://127.0.0.1:8080/api/posts: dial tcp 127.0.0.1:8080: too many open files
+

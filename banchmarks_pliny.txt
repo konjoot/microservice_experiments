@@ -1,0 +1,601 @@
+banchmarks
+
+pliny:
+wrk -c50    -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 50 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    70.82ms   33.06ms 320.30ms   74.15%
+      Req/Sec   142.49     57.02   250.00     60.65%
+    5674 requests in 10.02s, 205.76MB read
+  Requests/sec:    566.52
+  Transfer/sec:     20.54MB
+
+wrk -c100   -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 100 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    69.47ms   34.86ms 299.04ms   70.23%
+      Req/Sec   196.66    115.59   424.00     61.33%
+    5879 requests in 10.01s, 213.20MB read
+  Requests/sec:    587.09
+  Transfer/sec:     21.29MB
+
+wrk -c150   -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 150 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    80.47ms   37.44ms 288.19ms   72.48%
+      Req/Sec   194.97    197.29   620.00     67.24%
+    5643 requests in 10.02s, 204.64MB read
+  Requests/sec:    563.34
+  Transfer/sec:     20.43MB
+
+wrk -c200   -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 200 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    84.90ms   38.94ms 301.74ms   70.87%
+      Req/Sec   195.35    237.61   666.00     66.78%
+    5630 requests in 10.02s, 204.17MB read
+  Requests/sec:    561.76
+  Transfer/sec:     20.37MB
+
+wrk -c250   -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 250 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    87.92ms   41.35ms 403.83ms   71.95%
+      Req/Sec   545.75     56.23   696.00     77.00%
+    5440 requests in 10.02s, 197.28MB read
+  Requests/sec:    543.08
+  Transfer/sec:     19.69MB
+
+wrk -c500   -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 500 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    84.41ms   38.66ms 288.19ms   69.49%
+      Req/Sec   284.10     50.62   404.00     67.50%
+    5663 requests in 10.02s, 205.37MB read
+  Requests/sec:    565.06
+  Transfer/sec:     20.49MB
+
+wrk -c1000  -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 1000 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    87.15ms   39.83ms 365.60ms   70.67%
+      Req/Sec   550.19     56.76   670.00     76.00%
+    5479 requests in 10.02s, 198.69MB read
+  Requests/sec:    546.95
+  Transfer/sec:     19.83MB
+
+wrk -c1500  -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 1500 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    87.34ms   39.79ms 414.04ms   70.89%
+      Req/Sec   182.91     29.01   272.00     66.00%
+    5472 requests in 10.03s, 198.44MB read
+    Socket errors: connect 483, read 0, write 0, timeout 0
+  Requests/sec:    545.55
+  Transfer/sec:     19.78MB
+
+wrk -c3000  -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 3000 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    88.66ms   39.69ms 358.96ms   70.14%
+      Req/Sec   180.28    141.53   450.00     69.00%
+    5392 requests in 10.02s, 195.54MB read
+    Socket errors: connect 1983, read 51, write 0, timeout 0
+  Requests/sec:    538.22
+  Transfer/sec:     19.52MB
+
+wrk -c5000  -d10s -t4 "http://localhost:5000/posts"
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 5000 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    84.13ms   39.19ms 282.09ms   71.04%
+      Req/Sec   138.66     33.28   242.00     68.25%
+    5531 requests in 10.03s, 200.58MB read
+    Socket errors: connect 3983, read 0, write 0, timeout 0
+  Requests/sec:    551.51
+  Transfer/sec:     20.00MB
+
+wrk -c10000 -d10s -t4 "http://localhost:5000/posts"
+
+  Running 10s test @ http://localhost:5000/posts
+    4 threads and 10000 connections
+    Thread Stats   Avg      Stdev     Max   +/- Stdev
+      Latency    87.02ms   39.99ms 295.47ms   70.07%
+      Req/Sec   183.38    137.99   454.00     63.33%
+    5482 requests in 10.04s, 198.80MB read
+    Socket errors: connect 6507, read 260, write 0, timeout 0
+  Requests/sec:    545.93
+  Transfer/sec:     19.80MB
+
+Во всех этих тестах Pliny показал себя очень хорошо, каждый из воркеров отъел памяти ~1597M и каждый из потоков грузил ядро не более чем на 86%. Т.е. система не легла, даже при большой нагрузке.
+
+pliny + boom:
+
+boom -n 5000 -c 50 "http://localhost:5000/posts"
+  Summary:
+    Total:  9.5782 secs.
+    Slowest:  0.4306 secs.
+    Fastest:  0.0048 secs.
+    Average:  0.0950 secs.
+    Requests/sec: 522.0190
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.005 [1] |
+    0.047 [1720]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.090 [1154]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.133 [801] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.175 [460] |∎∎∎∎∎∎∎∎∎∎
+    0.218 [401] |∎∎∎∎∎∎∎∎∎
+    0.260 [298] |∎∎∎∎∎∎
+    0.303 [129] |∎∎∎
+    0.345 [31]  |
+    0.388 [4] |
+    0.431 [1] |
+
+  Latency distribution:
+    10% in 0.0161 secs.
+    25% in 0.0341 secs.
+    50% in 0.0741 secs.
+    75% in 0.1387 secs.
+    90% in 0.2113 secs.
+    95% in 0.2451 secs.
+    99% in 0.2974 secs.
+
+boom -n 5000 -c 100 "http://localhost:5000/posts"
+  Summary:
+    Total:  9.5857 secs.
+    Slowest:  0.5163 secs.
+    Fastest:  0.0065 secs.
+    Average:  0.1882 secs.
+    Requests/sec: 521.6126
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.006 [1] |
+    0.057 [335] |∎∎∎∎∎∎∎∎∎∎∎∎
+    0.108 [1030]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.159 [1052]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.210 [676] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.261 [557] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.312 [576] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.363 [438] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.414 [242] |∎∎∎∎∎∎∎∎∎
+    0.465 [80]  |∎∎∎
+    0.516 [13]  |
+
+  Latency distribution:
+    10% in 0.0681 secs.
+    25% in 0.1036 secs.
+    50% in 0.1645 secs.
+    75% in 0.2698 secs.
+    90% in 0.3419 secs.
+    95% in 0.3760 secs.
+    99% in 0.4310 secs.
+
+boom -n 5000 -c 150 "http://localhost:5000/posts"
+  Summary:
+    Total:  9.7735 secs.
+    Slowest:  0.8564 secs.
+    Fastest:  0.0056 secs.
+    Average:  0.2834 secs.
+    Requests/sec: 511.5854
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.006 [1] |
+    0.091 [1674]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.176 [1288]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.261 [294] |∎∎∎∎∎∎∎
+    0.346 [57]  |∎
+    0.431 [16]  |
+    0.516 [77]  |∎
+    0.601 [374] |∎∎∎∎∎∎∎∎
+    0.686 [654] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.771 [495] |∎∎∎∎∎∎∎∎∎∎∎
+    0.856 [70]  |∎
+
+  Latency distribution:
+    10% in 0.0412 secs.
+    25% in 0.0735 secs.
+    50% in 0.1315 secs.
+    75% in 0.5980 secs.
+    90% in 0.6919 secs.
+    95% in 0.7257 secs.
+    99% in 0.7815 secs.
+
+boom -n 5000 -c 200 "http://localhost:5000/posts"
+  Summary:
+    Total:  9.8582 secs.
+    Slowest:  0.9174 secs.
+    Fastest:  0.0055 secs.
+    Average:  0.3775 secs.
+    Requests/sec: 507.1942
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.006 [1] |
+    0.097 [133] |∎∎∎
+    0.188 [1492]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.279 [1368]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.370 [281] |∎∎∎∎∎∎∎
+    0.461 [31]  |
+    0.553 [22]  |
+    0.644 [118] |∎∎∎
+    0.735 [687] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.826 [749] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.917 [118] |∎∎∎
+
+  Latency distribution:
+    10% in 0.1312 secs.
+    25% in 0.1692 secs.
+    50% in 0.2357 secs.
+    75% in 0.6987 secs.
+    90% in 0.7715 secs.
+    95% in 0.8035 secs.
+    99% in 0.8484 secs.
+
+boom -n 5000 -c 250 "http://localhost:5000/posts"
+  Summary:
+    Total:  9.7123 secs.
+    Slowest:  0.9571 secs.
+    Fastest:  0.0688 secs.
+    Average:  0.4653 secs.
+    Requests/sec: 514.8113
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.069 [1] |
+    0.158 [79]  |∎∎
+    0.246 [364] |∎∎∎∎∎∎∎∎∎∎
+    0.335 [868] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.424 [1367]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.513 [634] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.602 [257] |∎∎∎∎∎∎∎
+    0.691 [562] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.779 [520] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.868 [296] |∎∎∎∎∎∎∎∎
+    0.957 [52]  |∎
+
+  Latency distribution:
+    10% in 0.2554 secs.
+    25% in 0.3306 secs.
+    50% in 0.4110 secs.
+    75% in 0.6362 secs.
+    90% in 0.7508 secs.
+    95% in 0.7989 secs.
+    99% in 0.8713 secs.
+
+boom -n 5000 -c 500 "http://localhost:5000/posts"
+  Summary:
+    Total:  10.8075 secs.
+    Slowest:  2.7285 secs.
+    Fastest:  0.0055 secs.
+    Average:  0.9700 secs.
+    Requests/sec: 462.6436
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.006 [1] |
+    0.278 [1369]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.550 [1584]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.822 [286] |∎∎∎∎∎∎∎
+    1.095 [44]  |∎
+    1.367 [39]  |
+    1.639 [50]  |∎
+    1.912 [50]  |∎
+    2.184 [692] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.456 [581] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.729 [304] |∎∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 0.1109 secs.
+    25% in 0.2499 secs.
+    50% in 0.4718 secs.
+    75% in 2.1173 secs.
+    90% in 2.3219 secs.
+    95% in 2.4741 secs.
+    99% in 2.5731 secs.
+
+boom -n 5000 -c 1000 "http://localhost:5000/posts"
+  Summary:
+    Total:  9.9224 secs.
+    Slowest:  2.6492 secs.
+    Fastest:  0.0832 secs.
+    Average:  1.7416 secs.
+    Requests/sec: 503.9108
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.083 [1] |
+    0.340 [92]  |∎
+    0.596 [134] |∎∎
+    0.853 [166] |∎∎∎
+    1.110 [125] |∎∎
+    1.366 [108] |∎∎
+    1.623 [639] |∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.879 [1875]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.136 [750] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.393 [982] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.649 [128] |∎∎
+
+  Latency distribution:
+    10% in 1.0654 secs.
+    25% in 1.6191 secs.
+    50% in 1.7936 secs.
+    75% in 2.1181 secs.
+    90% in 2.2000 secs.
+    95% in 2.2692 secs.
+    99% in 2.4439 secs.
+
+boom -n 5000 -c 1500 "http://localhost:5000/posts"
+  Summary:
+    Total:  9.7979 secs.
+    Slowest:  5.8213 secs.
+    Fastest:  0.0539 secs.
+    Average:  2.4648 secs.
+    Requests/sec: 510.3115
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.054 [1] |
+    0.631 [247] |∎∎∎∎
+    1.207 [292] |∎∎∎∎
+    1.784 [329] |∎∎∎∎∎
+    2.361 [644] |∎∎∎∎∎∎∎∎∎∎
+    2.938 [2404]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    3.514 [884] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    4.091 [158] |∎∎
+    4.668 [0] |
+    5.245 [0] |
+    5.821 [41]  |
+
+  Latency distribution:
+    10% in 1.0928 secs.
+    25% in 2.1991 secs.
+    50% in 2.7248 secs.
+    75% in 2.9018 secs.
+    90% in 3.0658 secs.
+    95% in 3.4211 secs.
+    99% in 3.8299 secs.
+
+boom -n 5000 -c 3000 "http://localhost:5000/posts"
+  Summary:
+    Total:  10.3761 secs.
+    Slowest:  7.8543 secs.
+    Fastest:  0.2393 secs.
+    Average:  4.1307 secs.
+    Requests/sec: 481.8767
+
+  Status code distribution:
+    [200] 5000 responses
+
+  Response time histogram:
+    0.239 [1] |
+    1.001 [433] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.762 [379] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.524 [422] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    3.285 [375] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    4.047 [510] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    4.808 [813] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    5.570 [629] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    6.331 [658] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    7.093 [647] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    7.854 [133] |∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 1.1445 secs.
+    25% in 2.5489 secs.
+    50% in 4.3148 secs.
+    75% in 5.7800 secs.
+    90% in 6.5476 secs.
+    95% in 6.7691 secs.
+    99% in 7.5567 secs.
+
+boom -n 5000 -c 5000 "http://localhost:5000/posts"
+  Summary:
+    Total:  3.2536 secs.
+    Slowest:  3.1903 secs.
+    Fastest:  0.1668 secs.
+    Average:  1.3403 secs.
+    Requests/sec: 313.4947
+
+  Status code distribution:
+    [200] 1020 responses
+
+  Response time histogram:
+    0.167 [1] |
+    0.469 [151] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.771 [180] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.074 [168] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.376 [138] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.679 [62]  |∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.981 [57]  |∎∎∎∎∎∎∎∎∎∎∎∎
+    2.283 [66]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.586 [64]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.888 [66]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    3.190 [67]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 0.3696 secs.
+    25% in 0.6405 secs.
+    50% in 1.0926 secs.
+    75% in 2.0213 secs.
+    90% in 2.7265 secs.
+    95% in 2.9816 secs.
+    99% in 3.1730 secs.
+
+  Error distribution:
+    [3980]  Get http://127.0.0.1:5000/posts: dial tcp 127.0.0.1:5000: too many open files
+
+boom -n 10000 -c 10000 "http://localhost:5000/posts"
+  Summary:
+    Total:  2.3113 secs.
+    Slowest:  2.2022 secs.
+    Fastest:  0.2543 secs.
+    Average:  1.1639 secs.
+    Requests/sec: 441.3102
+
+  Status code distribution:
+    [200] 1020 responses
+
+  Response time histogram:
+    0.254 [1] |
+    0.449 [118] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.644 [118] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    0.839 [111] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.033 [103] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.228 [82]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.423 [115] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.618 [116] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.813 [103] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.007 [79]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.202 [74]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 0.4253 secs.
+    25% in 0.6784 secs.
+    50% in 1.1719 secs.
+    75% in 1.6219 secs.
+    90% in 1.9323 secs.
+    95% in 2.0612 secs.
+    99% in 2.1926 secs.
+
+  Error distribution:
+    [8980]  Get http://127.0.0.1:5000/posts: dial tcp 127.0.0.1:5000: too many open files
+
+
+boom -n 100000 -c 50000 "http://localhost:5000/posts"
+  Summary:
+    Total:  4.7652 secs.
+    Slowest:  4.0104 secs.
+    Fastest:  0.5924 secs.
+    Average:  2.3296 secs.
+    Requests/sec: 299.6721
+
+  Status code distribution:
+    [200] 1428 responses
+
+  Response time histogram:
+    0.592 [1] |
+    0.934 [127] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.276 [84]  |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.618 [164] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    1.960 [29]  |∎∎∎∎
+    2.301 [228] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.643 [237] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.985 [189] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    3.327 [196] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    3.669 [126] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    4.010 [47]  |∎∎∎∎∎∎∎
+
+  Latency distribution:
+    10% in 0.9698 secs.
+    25% in 1.5675 secs.
+    50% in 2.4076 secs.
+    75% in 3.0101 secs.
+    90% in 3.4021 secs.
+    95% in 3.5724 secs.
+    99% in 3.8881 secs.
+
+  Error distribution:
+    [98572] Get http://127.0.0.1:5000/posts: dial tcp 127.0.0.1:5000: too many open files
+
+boom -n 500000 -c 100000 "http://localhost:5000/posts"
+
+  Summary:
+    Total:  11.7196 secs.
+    Slowest:  6.1663 secs.
+    Fastest:  0.8317 secs.
+    Average:  3.4939 secs.
+    Requests/sec: 250.3489
+
+  Status code distribution:
+    [200] 2934 responses
+
+  Response time histogram:
+    0.832 [1] |
+    1.365 [85]  |∎∎∎∎∎
+    1.899 [261] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.432 [346] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.966 [201] |∎∎∎∎∎∎∎∎∎∎∎∎∎
+    3.499 [492] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    4.032 [418] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    4.566 [592] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    5.099 [347] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    5.633 [105] |∎∎∎∎∎∎∎
+    6.166 [86]  |∎∎∎∎∎
+
+  Latency distribution:
+    10% in 1.8070 secs.
+    25% in 2.5643 secs.
+    50% in 3.5593 secs.
+    75% in 4.4096 secs.
+    90% in 4.9008 secs.
+    95% in 5.2327 secs.
+    99% in 6.0017 secs.
+
+  Error distribution:
+    [497066]  Get http://127.0.0.1:5000/posts: dial tcp 127.0.0.1:5000: too many open files
+
+boom -n 1000000 -c 500000 "http://localhost:5000/posts"
+  Summary:
+    Total:  24.8799 secs.
+    Slowest:  9.1021 secs.
+    Fastest:  0.4148 secs.
+    Average:  3.9867 secs.
+    Requests/sec: 203.9799
+
+  Status code distribution:
+    [200] 5075 responses
+
+  Response time histogram:
+    0.415 [1] |
+    1.284 [345] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    2.152 [549] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    3.021 [903] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    3.890 [766] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    4.758 [925] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    5.627 [465] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    6.496 [460] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    7.365 [492] |∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎
+    8.233 [67]  |∎∎
+    9.102 [102] |∎∎∎∎
+
+  Latency distribution:
+    10% in 1.4866 secs.
+    25% in 2.5218 secs.
+    50% in 3.8721 secs.
+    75% in 5.4516 secs.
+    90% in 6.6393 secs.
+    95% in 6.8787 secs.
+    99% in 8.5759 secs.
+
+  Error distribution:
+    [994925]  Get http://127.0.0.1:5000/posts: dial tcp 127.0.0.1:5000: too many open files
+
