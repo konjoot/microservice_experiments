@@ -24,4 +24,4 @@ test:
 
 production:
   <<: *default
-  database: ror_grape_prod
+  database: ror_grape
