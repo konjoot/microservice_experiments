@@ -5,6 +5,7 @@ port Config.port
 quiet
 threads Config.puma_min_threads, Config.puma_max_threads
 workers Config.puma_workers
+daemonize Config.daemonize || false
 
 on_worker_boot do
   # force Sequel's thread pool to be refreshed
